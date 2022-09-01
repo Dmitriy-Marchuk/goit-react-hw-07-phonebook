@@ -1,0 +1,54 @@
+@import '../../styles/common/variables';
+
+.form {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    padding: 20px 10px ;
+    border: solid black 1px;
+    border-radius: 10px;
+    background-color: $second-bg-color;
+}
+
+.form__label {
+    max-width: 300px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.form__input {
+    padding: 5px;
+    max-width: 300px;
+    margin-bottom: 25px;
+    border: solid black 1px;
+    outline: none;
+    border-radius: 5px;
+
+    &:focus, &:hover {
+        transition: 250ms;
+        border-color: $accent-color;
+    }
+}
+
+.form__button {
+    max-width: 150px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    background-color:$main-bg-color;
+
+    &:hover {
+        transition: 250ms;
+        background-color: $accent-color;
+    }
+    &:active {
+        transition: none;
+        background-color: $accent-color;
+        color: $main-bg-color;
+    }
+}

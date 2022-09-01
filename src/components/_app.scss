@@ -1,0 +1,14 @@
+@import '../styles/common/variables';
+
+.main-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 50px;
+    color:$main-text-color;
+}
+
+.title {
+    margin: 20px 0 15px 0;
+}

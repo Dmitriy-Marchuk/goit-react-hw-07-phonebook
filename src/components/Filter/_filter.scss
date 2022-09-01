@@ -1,0 +1,23 @@
+@import '../../styles/common/variables';
+
+.filter__label {
+    display: block;
+    max-width: 200px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.filter__input {
+    margin-left: 10px;
+    padding: 5px;
+    max-width: 200px;
+    border: solid black 1px;
+    outline: none;
+    border-radius: 5px;
+    &:focus,
+    &:hover {
+        transition: 250ms;
+        border-color:$accent-color;
+    }
+}
