@@ -1,10 +1,13 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { filterContact } from 'redux/filterSlice';
 import './_filter.scss';
-import PropTypes from 'prop-types';
-// import { useSelector } from 'react-redux';
 
-const Filter = ({ value, onChange }) => {
-  // const filter = useSelector(state => state.filters.status);
+const Filter = () => {
+  const dispatch = useDispatch();
+  const handleChange = e => {
+    dispatch(filterContact(e.target.value));
+  };
+
   return (
     <>
       <label htmlFor="filterInput" className="filter__label">
@@ -14,16 +17,11 @@ const Filter = ({ value, onChange }) => {
         className="filter__input"
         id="filterInput"
         type="text"
-        value={value}
-        onChange={onChange}
+        name="filter"
+        onChange={handleChange}
       />
     </>
   );
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};

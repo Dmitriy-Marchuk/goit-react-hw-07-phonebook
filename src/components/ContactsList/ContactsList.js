@@ -1,25 +1,23 @@
-import './_contactsList.scss';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts, getFilters } from 'redux/selectors';
+import Contact from 'components/Contact/Contact';
+import './_contactsList.scss';
 
-const ContactsList = ({ onDeliteContact }) => {
+const ContactsList = () => {
   const contacts = useSelector(getContacts);
+  const getNames = useSelector(getFilters).filter.toLowerCase().trim();
+
+  const filteredContact = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(getNames)
+    );
+  };
+
   return (
     <ul className="contacts__list">
-      {contacts.map(contact => (
+      {filteredContact().map(contact => (
         <li key={contact.id} className="contacts__item">
-          <div className="contacts__item__strings__box">
-            <p className="contacts__item__name">{contact.name}:</p>
-            <p className="contacts__item__number">{contact.number}</p>
-            <button
-              onClick={() => onDeliteContact(contact.id)}
-              className="contacts__delete"
-              type="button"
-            >
-              Delete
-            </button>
-          </div>
+          <Contact contact={contact} />
         </li>
       ))}
     </ul>
@@ -27,14 +25,3 @@ const ContactsList = ({ onDeliteContact }) => {
 };
 
 export default ContactsList;
-
-ContactsList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  onDeliteContact: PropTypes.func,
-};

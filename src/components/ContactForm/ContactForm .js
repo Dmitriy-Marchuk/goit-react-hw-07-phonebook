@@ -1,14 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 import './_contactForm.scss';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const getContactsStore = useSelector(getContacts);
 
   const handleSubmit = e => {
-    e.preventDefault();
     const form = e.target;
-    dispatch(addContact(form.elements.name.value, form.elements.number.value));
+    const name = form.elements.name.value;
+
+    e.preventDefault();
+
+    if (getContactsStore) {
+      getContactsStore.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+        ? alert(name + ' is already in contact book')
+        : dispatch(
+            addContact(form.elements.name.value, form.elements.number.value)
+          );
+    }
     form.reset();
   };
 
