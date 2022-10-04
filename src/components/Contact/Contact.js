@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/contacts/contactsSlice';
 import './_contact.scss';
 
 const Contact = ({ contact }) => {
@@ -10,7 +10,7 @@ const Contact = ({ contact }) => {
     <div className="contacts__item__strings__box">
       <div style={{ display: 'flex' }}>
         <p className="contacts__item__name">{contact.name}:</p>
-        <p className="contacts__item__number">{contact.number}</p>
+        <p className="contacts__item__number">{contact.phone}</p>
       </div>
       <button onClick={handleDelete} className="contacts__delete" type="button">
         Delete
