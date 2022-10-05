@@ -1,12 +1,10 @@
-import { useDispatch } from 'react-redux';
-import { filterContact } from 'redux/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import './_filter.scss';
+import { change } from 'redux/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const handleChange = e => {
-    dispatch(filterContact(e.target.value));
-  };
+  const filter = useSelector(state => state.filter);
 
   return (
     <>
@@ -18,7 +16,8 @@ const Filter = () => {
         id="filterInput"
         type="text"
         name="filter"
-        onChange={handleChange}
+        value={filter}
+        onChange={e => dispatch(change(e.target.value))}
       />
     </>
   );
